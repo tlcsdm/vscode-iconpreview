@@ -94,7 +94,6 @@ async function generateIconTheme(): Promise<void> {
     }
     
     const iconDefinitions: Record<string, { iconPath: string }> = {};
-    const fileExtensions: Record<string, string> = {};
     const fileNames: Record<string, string> = {};
     
     // Process each image file
@@ -126,13 +125,6 @@ async function generateIconTheme(): Promise<void> {
         }
     }
     
-    // Add default icons for extensions that don't have specific files
-    for (const ext of supportedExtensions) {
-        if (!fileExtensions[ext]) {
-            fileExtensions[ext] = '_file';
-        }
-    }
-    
     // Create the icon theme JSON
     const iconTheme = {
         iconDefinitions: {
@@ -150,7 +142,6 @@ async function generateIconTheme(): Promise<void> {
         file: '_file',
         folder: '_folder',
         folderExpanded: '_folder_open',
-        fileExtensions: fileExtensions,
         fileNames: fileNames
     };
     
