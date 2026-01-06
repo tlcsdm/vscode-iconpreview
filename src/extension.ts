@@ -66,8 +66,8 @@ async function generateThumbnail(imagePath: string, outputPath: string): Promise
             .png()
             .toFile(outputPath);
         return true;
-    } catch (error) {
-        console.error(`Failed to generate thumbnail for ${imagePath}:`, error);
+    } catch {
+        // Silently skip unsupported image formats - this is expected for some files
         return false;
     }
 }
@@ -126,94 +126,14 @@ async function generateIconTheme(): Promise<void> {
     }
     
     // Create the icon theme JSON
+    // Only define icons for specific image files, don't override default file/folder icons
     const iconTheme = {
-        iconDefinitions: {
-            '_file': {
-                iconPath: './default-file.png'
-            },
-            '_folder': {
-                iconPath: './default-folder.png'
-            },
-            '_folder_open': {
-                iconPath: './default-folder-open.png'
-            },
-            ...iconDefinitions
-        },
-        file: '_file',
-        folder: '_folder',
-        folderExpanded: '_folder_open',
+        iconDefinitions: iconDefinitions,
         fileNames: fileNames
     };
     
     // Write the icon theme file
     fs.writeFileSync(iconThemePath, JSON.stringify(iconTheme, null, 2));
-    
-    // Create default icon files if they don't exist
-    await createDefaultIcons();
-}
-
-/**
- * Create default icon files
- */
-async function createDefaultIcons(): Promise<void> {
-    const iconSize = getIconSize();
-    const defaultIconPath = path.join(outputIconsDir, 'default-file.png');
-    const defaultFolderPath = path.join(outputIconsDir, 'default-folder.png');
-    const defaultFolderOpenPath = path.join(outputIconsDir, 'default-folder-open.png');
-    
-    // Create a simple file icon (gray square with white center)
-    if (!fs.existsSync(defaultIconPath)) {
-        try {
-            await sharp({
-                create: {
-                    width: iconSize,
-                    height: iconSize,
-                    channels: 4,
-                    background: { r: 180, g: 180, b: 180, alpha: 1 }
-                }
-            })
-            .png()
-            .toFile(defaultIconPath);
-        } catch (error) {
-            console.error('Failed to create default file icon:', error);
-        }
-    }
-    
-    // Create a simple folder icon (yellow-ish square)
-    if (!fs.existsSync(defaultFolderPath)) {
-        try {
-            await sharp({
-                create: {
-                    width: iconSize,
-                    height: iconSize,
-                    channels: 4,
-                    background: { r: 220, g: 180, b: 80, alpha: 1 }
-                }
-            })
-            .png()
-            .toFile(defaultFolderPath);
-        } catch (error) {
-            console.error('Failed to create default folder icon:', error);
-        }
-    }
-    
-    // Create a simple folder open icon (lighter yellow)
-    if (!fs.existsSync(defaultFolderOpenPath)) {
-        try {
-            await sharp({
-                create: {
-                    width: iconSize,
-                    height: iconSize,
-                    channels: 4,
-                    background: { r: 240, g: 200, b: 100, alpha: 1 }
-                }
-            })
-            .png()
-            .toFile(defaultFolderOpenPath);
-        } catch (error) {
-            console.error('Failed to create default folder open icon:', error);
-        }
-    }
 }
 
 /**
