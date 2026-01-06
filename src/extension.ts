@@ -218,8 +218,6 @@ export async function activate(context: vscode.ExtensionContext): Promise<void> 
             scheduleIconRegeneration();
         })
     );
-    
-    console.log('Icon Preview extension is now active');
 }
 
 /**
