@@ -107,5 +107,8 @@
   "dependencies": {
     "sharp": "^0.34.5"
   },
+  "overrides": {
+    "uri-js": "npm:uri-js-replace@^1.0.1"
+  },
   "license": "MIT"
 }
