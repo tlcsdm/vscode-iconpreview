@@ -1,6 +1,6 @@
 {
   "name": "vscode-iconpreview",
-  "displayName": "Icon Preview",
+  "displayName": "VSCode Icon Preview",
   "description": "Preview image files as their own thumbnails in VS Code Explorer",
   "version": "1.0.0",
   "publisher": "unknowIfGuestInDream",
