@@ -15,4 +15,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Configurable image extensions and icon size
 - Auto-refresh when image files change
 - Manual refresh command
-- Full undo/redo support
+- Activate icon theme command
