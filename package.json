@@ -1,0 +1,111 @@
+{
+  "name": "vscode-iconpreview",
+  "displayName": "Icon Preview",
+  "description": "Preview image files as their own thumbnails in VS Code Explorer",
+  "version": "1.0.0",
+  "publisher": "unknowIfGuestInDream",
+  "icon": "images/icon.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tlcsdm/vscode-iconpreview"
+  },
+  "bugs": {
+    "url": "https://github.com/tlcsdm/vscode-iconpreview/issues"
+  },
+  "homepage": "https://github.com/tlcsdm/vscode-iconpreview#readme",
+  "engines": {
+    "vscode": "^1.107.0"
+  },
+  "categories": [
+    "Other",
+    "Themes"
+  ],
+  "keywords": [
+    "icon",
+    "preview",
+    "thumbnail",
+    "image",
+    "explorer"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "iconThemes": [
+      {
+        "id": "iconpreview",
+        "label": "Icon Preview",
+        "path": "./out/icons/iconpreview-icon-theme.json"
+      }
+    ],
+    "configuration": {
+      "title": "Icon Preview",
+      "properties": {
+        "tlcsdm.iconpreview.autoActivate": {
+          "type": "boolean",
+          "default": true,
+          "description": "Automatically activate the icon theme when opening a workspace"
+        },
+        "tlcsdm.iconpreview.supportedExtensions": {
+          "type": "array",
+          "default": [
+            "png",
+            "jpg",
+            "jpeg",
+            "gif",
+            "bmp",
+            "ico",
+            "svg",
+            "webp"
+          ],
+          "items": {
+            "type": "string"
+          },
+          "description": "Image file extensions to preview as thumbnails"
+        },
+        "tlcsdm.iconpreview.iconSize": {
+          "type": "number",
+          "default": 16,
+          "minimum": 8,
+          "maximum": 32,
+          "description": "Size of the icon thumbnails in pixels"
+        }
+      }
+    },
+    "commands": [
+      {
+        "command": "tlcsdm.iconpreview.refresh",
+        "title": "Icon Preview: Refresh Icons"
+      },
+      {
+        "command": "tlcsdm.iconpreview.activate",
+        "title": "Icon Preview: Activate Icon Theme"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src",
+    "test": "vscode-test --config ./.vscode-test.json"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.17.0",
+    "@types/mocha": "^10.0.10",
+    "@types/node": "22.x",
+    "@types/vscode": "^1.107.0",
+    "@vscode/test-cli": "^0.0.12",
+    "@vscode/test-electron": "^2.4.1",
+    "@vscode/vsce": "^3.2.2",
+    "eslint": "^9.17.0",
+    "typescript": "^5.7.2",
+    "typescript-eslint": "^8.18.2"
+  },
+  "dependencies": {
+    "sharp": "^0.33.5"
+  },
+  "license": "MIT"
+}
