@@ -2,7 +2,7 @@
   "name": "vscode-iconpreview",
   "displayName": "VSCode Icon Preview",
   "description": "Preview image files as their own thumbnails in VS Code Explorer",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "publisher": "unknowIfGuestInDream",
   "icon": "images/icon.png",
   "repository": {
