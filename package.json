@@ -105,7 +105,7 @@
     "typescript-eslint": "^8.61.1"
   },
   "dependencies": {
-    "sharp": "^0.35.1"
+    "sharp": "^0.35.2"
   },
   "overrides": {
     "uri-js": "npm:uri-js-replace@^1.0.1"
