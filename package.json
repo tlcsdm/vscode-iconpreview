@@ -86,8 +86,8 @@
   },
   "scripts": {
     "vscode:prepublish": "npm run compile",
-    "compile": "tsc -p ./",
-    "watch": "tsc -watch -p ./",
+    "compile": "node node_modules/typescript7/bin/tsc -p ./",
+    "watch": "node node_modules/typescript7/bin/tsc -watch -p ./",
     "pretest": "npm run compile && npm run lint",
     "lint": "eslint src",
     "test": "vscode-test --config ./.vscode-test.json"
@@ -101,8 +101,9 @@
     "@vscode/test-electron": "^3.0.0",
     "@vscode/vsce": "^3.9.2",
     "eslint": "^10.7.0",
-    "typescript": "^6.0.3",
-    "typescript-eslint": "^8.64.0"
+    "typescript": "npm:@typescript/typescript6@^6.0.2",
+    "typescript-eslint": "^8.64.0",
+    "typescript7": "npm:typescript@^7.0.2"
   },
   "dependencies": {
     "sharp": "^0.35.3"
